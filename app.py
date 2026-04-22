@@ -11,7 +11,7 @@ import streamlit as st
 import pandas as pd
 import re
 
-st.title("Procesador de Materiales SAP")
+st.title("Procesador de Materiales para Inventario Fisico SAP IM")
 
 archivo = st.file_uploader("Sube tu archivo de materiales (.xlsx)", type="xlsx")
 
@@ -110,11 +110,7 @@ if archivo:
 
     # === Exportar Excel con todas las columnas por Elemento PEP ===
     def limpiar_nombre(nombre):
-        return re.sub(r'[
-
-\[\]
-
-:\*\/\\\?]', '_', str(nombre))[:31]
+        return re.sub(r'[\[\]:\*\/\\\?]', '_', str(nombre))[:31]
 
     # Ordenar primero por Ubicación y luego por Material (NaN al final)
     df_q = df_q.sort_values(by=['Ubicación','Material'], ascending=[True, True], na_position='last')
