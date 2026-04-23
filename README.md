@@ -10,7 +10,7 @@ Aplicación web en **Streamlit** que permite subir el archivo de materiales expo
 ## 🚀 Cómo usar
 
 1. Abre la aplicación en Streamlit Cloud:  
-   👉 [Enlace de la app](https://TU-APP.streamlit.app)
+   👉 [Enlace de la app](https://sap-materials-daniellezcanorios-app-gjzvae39blbpetykempkph.streamlit.app/)
 
 2. Sube tu archivo exportado de SAP mediante transacción Stock varios materiales (`.xlsx`).
 
