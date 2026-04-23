@@ -1,4 +1,4 @@
-# Procesador de Materiales para Inventarios Físicos en SAP S4/HANA Módulo IM Almacenes EPM
+# Procesador de Materiales para Inventarios Físicos SAP S4/HANA Almacenes EPM
 
 Aplicación web en **Streamlit** que permite subir el archivo de materiales exportado desde SAP y obtener:
 
