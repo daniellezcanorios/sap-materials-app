@@ -23,11 +23,10 @@ st.set_page_config(
 st.title("📦 Procesador de Materiales Inventario Físico SAP Almacenes EPM")
 st.markdown(
     """
-    Bienvenido al **Procesador de Materiales**.
-    Esta aplicación permite cargar un archivo Excel exportado desde SAP,
-    generar actas de inventario y descargar un Excel con los materiales de
+    Esta aplicación permite cargar un archivo Excel exportado desde SAP (Stock Varios Materiales),
+    identificar y determinar información para generación de actas y documentos de inventario físico en las diferentes transacciones y descargar un Excel con los materiales de
     **Stock especial Q (Proyectos)**, separados por **Elemento PEP**,
-    ordenados por **Ubicación** y luego por **Material**.
+    ordenados por **Ubicación**.
     """
 )
 
@@ -43,7 +42,7 @@ if archivo is not None:
 
     # === Validación de tipos de stock especiales distintos de "" y Q ===
     df_invalidos = df[~df['Tipo de stock especial'].isin(["","Q"])]
-    st.subheader("⚠️ Validación de materiales")
+    st.subheader("⚠️ Validación de materiales no válidos (Imputación diferente a vacío y Q)")
     if not df_invalidos.empty:
         st.dataframe(df_invalidos[['Centro','Almacén','Descripción de almacén','Tipo de stock especial','Material']])
     else:
@@ -117,7 +116,7 @@ if archivo is not None:
             }))
 
     # === Exportar Excel con hojas por Elemento PEP (solo Stock especial Q) ===
-    st.subheader("💾 Descarga de Excel por Almacén (Stock especial Q)")
+    st.subheader("💾 Exportar Excel Material Proyectos por Elemento PEP")
     for almacen, grupo in df[df['Tipo de stock especial'] == "Q"].groupby('Almacén'):
         nombre_archivo = f"Materiales_Por_Elemento_PEP_{almacen}.xlsx"
         output = BytesIO()
