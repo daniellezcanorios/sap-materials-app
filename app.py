@@ -43,7 +43,7 @@ if archivo is not None:
 
     # === Validación de tipos de stock especiales distintos de "" y Q ===
     df_invalidos = df[~df['Tipo de stock especial'].isin(["","Q"])]
-    st.subheader("⚠️ Validación de materiales no válidos (Imputación diferente a vacío y Q)")
+    st.subheader("⚠️ Validación de materiales con imputación diferente a vacío y Q)")
     if not df_invalidos.empty:
         st.dataframe(df_invalidos[['Centro','Almacén','Descripción de almacén','Tipo de stock especial','Material']])
     else:
