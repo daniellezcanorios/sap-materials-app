@@ -1,3 +1,4 @@
+
 # -*- coding: utf-8 -*-
 """Procesador Materiales Para Despliegue Streamlit V2.ipynb
 
@@ -24,9 +25,9 @@ st.title("📦 Procesador de Materiales Inventario Físico SAP Almacenes EPM")
 st.markdown(
     """
     Esta aplicación permite cargar un archivo Excel exportado desde SAP (Stock Varios Materiales),
-    identificar y determinar información para generación de actas y documentos de inventario físico en las diferentes transacciones y descargar un Excel con los materiales de
+    identificar y determinar información para generación de actas y documentos de inventario físico en las diferentes transacciones y exportar un archivo con los materiales de
     **Stock especial Q (Proyectos)**, separados por **Elemento PEP**,
-    ordenados por **Ubicación**.
+    ordenados por **Ubicación**, para facilitar la creación de los documentos de inventario mediante transacción MI01 por material individual
     """
 )
 
@@ -55,7 +56,7 @@ if archivo is not None:
         }]))
 
     # === Mostrar Actas ===
-    st.subheader("📊 Actas generadas")
+    st.subheader("📊 Desarrollo de Actas de Inventario")
     contador_acta = 1
     mapa_titulos = {"": "Material en Stock Regular", "Q": "Material de Proyectos"}
     frases = {"": "Creación de documento de inventario físico mediante transacción MI31",
