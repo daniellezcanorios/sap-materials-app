@@ -57,9 +57,10 @@ if archivo is not None:
 
     # === Mostrar Actas ===
     st.subheader("📊 Actas generadas")
-    actas = []
     contador_acta = 1
     mapa_titulos = {"": "Material en Stock Regular", "Q": "Material de Proyectos"}
+    frases = {"": "Creación de documento de inventario físico mediante transacción MI31",
+              "Q": "Creación de documento de inventario físico mediante transacción MI01"}
 
     for tipo in ["", "Q"]:
         df_tipo = df[df['Tipo de stock especial'] == tipo]
@@ -79,6 +80,9 @@ if archivo is not None:
                 Ubicacion_hasta=('Ubicación', lambda x: max([v for v in x if v != ""], default="")),
                 Ubicaciones_vacias=('Ubicación', lambda x: (x=="").sum())
             ).reset_index()
+
+            # Índice Doc 1, Doc 2...
+            resumen.index = [f'Doc {i+1}' for i in range(len(resumen))]
 
             # Insertar columnas al lado de Centro
             resumen.insert(1, 'Almacén', almacen)
@@ -102,7 +106,9 @@ if archivo is not None:
             }
             resumen.loc['TOTAL'] = fila_total
 
+            # Mostrar Acta
             st.markdown(f"### {nombre_acta}")
+            st.markdown(f"**{frases[tipo]}**")
             st.dataframe(resumen.style.format({
                 'Stock_libre': '{:.2f}',
                 'Stock_bloqueado': '{:.2f}',
